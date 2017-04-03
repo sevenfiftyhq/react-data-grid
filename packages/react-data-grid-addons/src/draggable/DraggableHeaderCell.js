@@ -8,10 +8,25 @@ class DraggableHeaderCell extends Component {
   componentDidMount() {
     let connectDragPreview = this.props.connectDragPreview;
     let img = new Image();
-    img.src = './assets/images/drag_column_full.png';
     img.onload = function() {
       connectDragPreview(img);
     };
+    img.onerror = function() {
+      let canvas = document.createElement('canvas');
+      canvas.width = 150;
+      canvas.height = 200;
+      if (canvas.getContext) {
+        let ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#eee';
+        ctx.fillRect(0, 0, 150, 35);
+        ctx.fillStyle = '#ddd';
+        ctx.fillRect(0, 35, 150, 1);
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 37, 150, 163);
+        img.src = canvas.toDataURL('image/png');
+      }
+    };
+    img.src = './assets/images/drag_column_full.png';
   }
 
   setScrollLeft(scrollLeft) {
