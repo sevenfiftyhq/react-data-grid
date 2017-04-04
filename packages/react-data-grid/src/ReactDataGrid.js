@@ -263,6 +263,14 @@ const ReactDataGrid = React.createClass({
   },
 
   onPressKeyWithCtrl(e: SyntheticKeyboardEvent) {
+    this.copyOrPasteByKeyPress(e);
+  },
+
+  onPressKeyWithMeta(e: SyntheticKeyboardEvent) {
+    this.copyOrPasteByKeyPress(e);
+  },
+
+  copyOrPasteByKeyPress(e: SyntheticKeyboardEvent) {
     let keys = {
       KeyCode_c: 99,
       KeyCode_C: 67,
