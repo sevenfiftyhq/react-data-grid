@@ -15,7 +15,7 @@ function createRows() {
 function fakeGetValidFilterValues() {
   let options = [];
   for (let i = 1; i <= 2; i++) {
-    options.push({ label: 'Title ' + i, value: i });
+    options.push({ label: 'Title ' + i + ' of 2', value: i });
   }
   return options;
 }
@@ -57,8 +57,8 @@ describe('AutoCompleteFilter', () => {
     it('When options are valid', () => {
       let request = component.getOptions();
       let result = [
-         { label: 'Title 1', value: 1 },
-         { label: 'Title 2', value: 2 }
+         { label: 'Title 1 of 2', value: 1 },
+         { label: 'Title 2 of 2', value: 2 }
       ];
       expect(request).toEqual(result);
     });
@@ -74,7 +74,7 @@ describe('AutoCompleteFilter', () => {
       });
 
       it('should filter valid values', () => {
-        let columnFilter = { filterTerm: [ {value: '1'} ] };
+        let columnFilter = { filterTerm: [ {value: 'Title 1 of 2'} ] };
         let request = filterValues(columnFilter);
         expect(request).toBeTruthy();
       });
@@ -98,12 +98,14 @@ describe('AutoCompleteFilter', () => {
       });
 
       it('should transform Integers into string to compare', () => {
-        let columnFilter = { filterTerm: [ {value: 1} ] };
+        rows = [{ id: 1, title: '100', count: 1 }];
+        let columnFilter = { filterTerm: [ {value: 100} ] };
         let request = filterValues(columnFilter);
         expect(request).toBeTruthy();
       });
 
       it('should transform Float into string to compare', () => {
+        rows = [{ id: 1, title: '1', count: 1 }];
         let columnFilter = { filterTerm: [ {value: 1.1} ] };
         let request = filterValues(columnFilter);
         expect(request).toBeFalsy();
@@ -131,7 +133,7 @@ describe('AutoCompleteFilter', () => {
       });
 
       it('should trim spaces of the filterTerm values', () => {
-        let columnFilter = { filterTerm: [ {value: '   1   '} ] };
+        let columnFilter = { filterTerm: [ {value: '   Title 1 of 2  '} ] };
         let request = filterValues(columnFilter);
         expect(request).toBeTruthy();
       });

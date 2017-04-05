@@ -41,8 +41,7 @@ class AutoCompleteFilter extends React.Component {
       if (columnValue !== undefined && filterTerms[key].value !== undefined) {
         let strColumnValue = columnValue.toString();
         let filterTermValue = filterTerms[key].value.toString();
-        let checkValueIndex = strColumnValue.trim().toLowerCase().indexOf(filterTermValue.trim().toLowerCase());
-        let columnMatchesSearch = checkValueIndex !== -1 && (checkValueIndex !== 0 || strColumnValue === filterTermValue);
+        let columnMatchesSearch = strColumnValue.trim().toLowerCase() === (filterTermValue.trim().toLowerCase());
         if (columnMatchesSearch === true) {
           columnValueContainsSearchTerms = true;
           break;
