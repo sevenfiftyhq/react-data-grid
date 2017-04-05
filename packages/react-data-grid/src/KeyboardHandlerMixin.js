@@ -2,6 +2,8 @@ let KeyboardHandlerMixin = {
   onKeyDown(e: SyntheticKeyboardEvent) {
     if (this.isCtrlKeyHeldDown(e)) {
       this.checkAndCall('onPressKeyWithCtrl', e);
+    } else if (this.isMetaKeyHeldDown(e)) {
+      this.checkAndCall('onPressKeyWithMeta', e);
     } else if (this.isKeyExplicitlyHandled(e.key)) {
       // break up individual keyPress events to have their own specific callbacks
       // this allows multiple mixins to listen to onKeyDown events and somewhat reduces methodName clashing
@@ -57,6 +59,10 @@ let KeyboardHandlerMixin = {
 
   isCtrlKeyHeldDown(e: SyntheticKeyboardEvent): boolean {
     return e.ctrlKey === true && e.key !== 'Control';
+  },
+
+  isMetaKeyHeldDown(e: SyntheticKeyboardEvent): boolean {
+    return e.metaKey && e.key !== 'Meta';
   },
 
   checkAndCall(methodName: string, args: any) {
