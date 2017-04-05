@@ -1,13 +1,12 @@
 {
   "name": "sevenfifty-react-data-grid",
   "main": "index.js",
-  "version": "0.1.0",
+  "version": "0.12.4",
   "homepage": "https://github.com/sevenfiftyhq/react-data-grid",
   "authors": [
-    "malonecj <malonecj@gmail.com>",
-    "bkrathwohl <becca@sevenfifty.com>"
+    "becca@sevenfifty.com"
   ],
-  "description": "Excel-like grid component built with React, with editors, keyboard navigation, copy & paste, and the like",
+  "description": "SevenFifty's extension of the React Data Grid component",
   "license": "MIT",
   "ignore": [
     "gulp",
@@ -23,6 +22,7 @@
     ".gitignore",
     ".eslintrc",
     "examples",
-    "config"
+    "config",
+    "**/.*"
   ]
 }
